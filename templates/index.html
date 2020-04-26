@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>FAKE NEWS DETECTION</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='css/style.css')}}">
+    <link href='https://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
+    {% if to_show == True %}
+    {% if res[1] == 0 %}
+      <style>
+    body{
+      background: red;
+    }
+  </style>
+    {%endif%}
+    {% if res[1] == 1 %}
+      <style>
+    body{
+      background: green;
+    }
+  </style>
+    {%endif%}
+    {%endif%}
+  </head>
+
+  <body>
+    <form action="/send" method="post" name="sign up for beta form">
+      <div class="header">
+         <p>Enter a news?</p>
+      </div>
+      <div class="description">
+        <p>News Status: {{ res[0] }}</p>
+      </div>
+      <div class="input">
+        <textarea rows = "50" cols = "50" name = "news" id="news">
+            {{ rnews }}
+         </textarea>
+<!--        <input type="text" class="button" id="email" name="news" placeholder="POST YOUR NEWS HERE">-->
+        <input type="submit" class="button" id="submit" value="ENTER">
+      </div>
+    </form>
+  </body>
+<script>
+    document.getElementById("news").addEventListener('keypress', event => {
+      if(event.which === 13){
+        event.stopPropagation();
+      }
+    })
+  </script>
+</html>
